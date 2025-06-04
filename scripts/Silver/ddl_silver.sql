@@ -48,6 +48,7 @@ CREATE TABLE silver.inventory (
     InventoryID INT,
 	ProductID INT,
 	QuantityInStock INT,
+	ReorderLevel INT,
 	CreateDate	DATETIME2 DEFAULT GETDATE()
 );
 GO
