@@ -108,7 +108,7 @@ CREATE TABLE silver.reviews (
 	ProductID INT,
 	CustomerID INT,
 	Rating INT,
-	Comment NVARCHAR(50),
+	Comment NVARCHAR(100),
 	ReviewDate DATE,
 	CreateDate		DATETIME2 DEFAULT GETDATE()
 );
