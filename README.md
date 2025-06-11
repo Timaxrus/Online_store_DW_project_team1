@@ -146,8 +146,8 @@ WHERE Status IN ('Pending', 'Shipped', 'Delivered');
     * Inserts new orders into the silver.orders table.
     * Automatically generates unique OrderID values using an IDENTITY column or sequence.
 ### 2. UpdateInventory :
-    - Updates inventory levels based on order and shipment data.
-    - Ensures consistency between silver.inventory and silver.orders.
+    * Updates inventory levels based on order and shipment data.
+    * Ensures consistency between silver.inventory and silver.orders.
 ## 5. Gold Layer
 ### Purpose:
 The Gold layer provides analytical views for business intelligence. These views aggregate and summarize data to support specific use cases.
