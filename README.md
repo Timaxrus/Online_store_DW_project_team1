@@ -64,3 +64,7 @@ GO
 
 CREATE SCHEMA gold;
 GO
+
+## **Warning** : Running this script will permanently delete all data in the Team1 database. Ensure proper backups before execution.
+
+## 3. Bronze Layer
