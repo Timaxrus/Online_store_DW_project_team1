@@ -1,5 +1,5 @@
 ---
-#PROJECT: Online_store_DW_project_team1
+# PROJECT: Online_store_DW_project_team1
 *Online store datawarehouse designing project*
 ---
 
@@ -176,12 +176,8 @@ FROM silver.orders
 GROUP BY YEAR(OrderDate), MONTH(OrderDate);
 ```
 
-graph TD
-    A[CSV Files] --> B[(Bronze Layer)]
-    B --> C[(Silver Layer)]
-    C --> D[(Gold Layer)]
-    D --> E[Business Intelligence]
-    D --> F[Operational Reports]
+![deepseek_mermaid_20250611_d8bd7f](https://github.com/user-attachments/assets/6878d10a-be09-4a52-ba6a-d6ae437dc970)
+
     
 ## 6. Automation with SQL Agent
 ### Purpose:
