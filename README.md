@@ -96,5 +96,55 @@ CREATE TABLE bronze.orders (
 1. **Script Name :** proc_load_bronze.sql
 2. **Purpose :** Bulk inserts data from CSV files into the corresponding Bronze tables.
 3. **Key Features :**
-- Automates the ingestion of raw data.
-- Ensures data integrity by matching column structures.
+    - Automates the ingestion of raw data.
+    - Ensures data integrity by matching column structures.
+
+--- 
+
+### 4. Silver Layer
+
+## 1. Purpose:
+The Silver layer performs ETL operations to transform and enhance the data from the Bronze layer. 
+This ensures high-quality, standardized data for downstream analysis.
+
+## Scripts:
+## 1. Silver DDL :
+    - Defines transformed tables with additional columns (e.g., Created_At).
+    - Includes constraints, indexes, and relationships.
+## 2. Silver Procedure :
+    - Pulls data from the Bronze layer.
+    - Applies transformations such as data cleaning, deduplication, and enrichment.
+**Example Transformation Logic:**
+The following snippet demonstrates how data is loaded and transformed in the Silver layer:
+```sql
+INSERT INTO silver.orders (
+    OrderID,
+    ProductID,
+    CustomerID,
+    OrderDate,
+    OrderQuantity,
+    TotalAmount,
+    Status,
+    CreatedAt
+)
+SELECT 
+    OrderID,
+    ProductID,
+    CustomerID,
+    OrderDate,
+    OrderQuantity,
+    TotalAmount,
+    Status,
+    GETDATE() AS CreatedAt
+FROM bronze.orders
+WHERE Status IN ('Pending', 'Shipped', 'Delivered');
+```
+### Stored Procedures:
+## 1. PlaceOrder :
+    - Inserts new orders into the silver.orders table.
+    - Automatically generates unique OrderID values using an IDENTITY column or sequence.
+## 2. UpdateInventory :
+    - Updates inventory levels based on order and shipment data.
+    - Ensures consistency between silver.inventory and silver.orders.
+
+
