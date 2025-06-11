@@ -175,6 +175,14 @@ SELECT
 FROM silver.orders
 GROUP BY YEAR(OrderDate), MONTH(OrderDate);
 ```
+
+graph TD
+    A[CSV Files] --> B[(Bronze Layer)]
+    B --> C[(Silver Layer)]
+    C --> D[(Gold Layer)]
+    D --> E[Business Intelligence]
+    D --> F[Operational Reports]
+    
 ## 6. Automation with SQL Agent
 ### Purpose:
 Automate the entire ETL process to ensure timely and consistent data updates.
