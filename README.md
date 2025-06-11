@@ -1,7 +1,7 @@
-===
+---
 #PROJECT: Online_store_DW_project_team1
 *Online store datawarehouse designing project*
-===
+---
 
 # Data Warehouse Project Documentation
 
@@ -162,5 +162,58 @@ The Gold layer provides analytical views for business intelligence. These views 
 *  CustomerLifetimeValue : Calculates the total value contributed by each customer.
 ### 3. InventoryStatus : Tracks stock levels and identifies low-stock items.
 * ProductReviewSummary : Aggregates product ratings and feedback.
-**Example View:**
+  
+### Example View:
 
+``` sql
+CREATE VIEW gold.SalesPerformance AS
+SELECT 
+    YEAR(OrderDate) AS Year,
+    MONTH(OrderDate) AS Month,
+    SUM(TotalAmount) AS TotalRevenue,
+    COUNT(OrderID) AS TotalOrders
+FROM silver.orders
+GROUP BY YEAR(OrderDate), MONTH(OrderDate);
+```
+## 6. Automation with SQL Agent
+### Purpose:
+Automate the entire ETL process to ensure timely and consistent data updates.
+
+### Steps:
+## 1. Schedule Jobs :
+    * Use SQL Server Agent to schedule recurring jobs for:
+    * Bulk inserting data into the Bronze layer.
+    * Running ETL processes in the Silver layer.
+    * Refreshing views in the Gold layer.
+## 2. Job Configuration :
+    * Define job steps for each layer.
+    * Include error handling and logging to track job execution.
+    
+### Example Job:
+
+``` sql
+-- Create a SQL Agent Job for Bronze Layer Data Ingestion
+EXEC msdb.dbo.sp_add_job @job_name = 'Bronze_Data_Ingestion';
+EXEC msdb.dbo.sp_add_jobstep @job_name = 'Bronze_Data_Ingestion', 
+    @step_name = 'Bulk_Insert', 
+    @command = 'EXEC proc_load_bronze;';
+EXEC msdb.dbo.sp_add_schedule @schedule_name = 'Daily_8AM', 
+    @freq_type = 4, -- Daily
+    @active_start_time = 080000;
+EXEC msdb.dbo.sp_attach_schedule @job_name = 'Bronze_Data_Ingestion', 
+    @schedule_name = 'Daily_8AM';
+```
+## 7. Deployment and Maintenance
+### 1. Deployment Checklist:
+    * Verify that all scripts are tested and error-free.
+    * Ensure proper permissions for SQL Server Agent jobs.
+    * Schedule regular backups of the Team1 database.
+### 2. Maintenance Tasks:
+    * Monitor job execution logs for errors.
+    * Periodically review and optimize queries for performance.
+    * Update transformations and views as business requirements evolve.
+    
+## 8. Conclusion
+This documentation outlines the architecture, scripts, and processes for the Data Warehouse project. By following this structure, you can ensure a robust, scalable, and maintainable system for analyzing online store data.
+
+For further details, refer to the individual scripts and files provided in the repository.
