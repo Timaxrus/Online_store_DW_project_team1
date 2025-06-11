@@ -111,11 +111,11 @@ This ensures high-quality, standardized data for downstream analysis.
 
 ### Scripts:
 ### 1. Silver DDL :
-    - Defines transformed tables with additional columns (e.g., Created_At).
-    - Includes constraints, indexes, and relationships.
+- Defines transformed tables with additional columns (e.g., Created_At).
+- Includes constraints, indexes, and relationships.
 ### 2. Silver Procedure :
-    - Pulls data from the Bronze layer.
-    - Applies transformations such as data cleaning, deduplication, and enrichment.
+- Pulls data from the Bronze layer.
+- Applies transformations such as data cleaning, deduplication, and enrichment.
 **Example Transformation Logic:**
 The following snippet demonstrates how data is loaded and transformed in the Silver layer:
 ```sql
@@ -143,11 +143,11 @@ WHERE Status IN ('Pending', 'Shipped', 'Delivered');
 ```
 ### Stored Procedures:
 ### 1. PlaceOrder :
-    * Inserts new orders into the silver.orders table.
-    * Automatically generates unique OrderID values using an IDENTITY column or sequence.
+* Inserts new orders into the silver.orders table.
+* Automatically generates unique OrderID values using an IDENTITY column or sequence.
 ### 2. UpdateInventory :
-    * Updates inventory levels based on order and shipment data.
-    * Ensures consistency between silver.inventory and silver.orders.
+* Updates inventory levels based on order and shipment data.
+* Ensures consistency between silver.inventory and silver.orders.
 ## 5. Gold Layer
 ### Purpose:
 The Gold layer provides analytical views for business intelligence. These views aggregate and summarize data to support specific use cases.
@@ -159,7 +159,7 @@ The Gold layer provides analytical views for business intelligence. These views 
 * DimCategories: Category-related attributes.
 ### 2. Fact Views :
 * SalesPerformance : Analyzes revenue, order quantities, and trends over time.
-*  CustomerLifetimeValue : Calculates the total value contributed by each customer.
+* CustomerLifetimeValue : Calculates the total value contributed by each customer.
 ### 3. InventoryStatus : Tracks stock levels and identifies low-stock items.
 * ProductReviewSummary : Aggregates product ratings and feedback.
   
@@ -185,17 +185,17 @@ Automate the entire ETL process to ensure timely and consistent data updates.
 
 ### Steps:
 ## 1. Schedule Jobs :
-    * Use SQL Server Agent to schedule recurring jobs for:
-    * Bulk inserting data into the Bronze layer.
-    * Running ETL processes in the Silver layer.
-    * Refreshing views in the Gold layer.
+* Use SQL Server Agent to schedule recurring jobs for:
+* Bulk inserting data into the Bronze layer.
+* Running ETL processes in the Silver layer.
+* Refreshing views in the Gold layer.
 ## 2. Job Configuration :
-    * Define job steps for each layer.
-    * Include error handling and logging to track job execution.
+* Define job steps for each layer.
+* Include error handling and logging to track job execution.
     
 ### Example Job:
 
-``` sql
+```sql
 -- Create a SQL Agent Job for Bronze Layer Data Ingestion
 EXEC msdb.dbo.sp_add_job @job_name = 'Bronze_Data_Ingestion';
 EXEC msdb.dbo.sp_add_jobstep @job_name = 'Bronze_Data_Ingestion', 
@@ -209,13 +209,13 @@ EXEC msdb.dbo.sp_attach_schedule @job_name = 'Bronze_Data_Ingestion',
 ```
 ## 7. Deployment and Maintenance
 ### 1. Deployment Checklist:
-    * Verify that all scripts are tested and error-free.
-    * Ensure proper permissions for SQL Server Agent jobs.
-    * Schedule regular backups of the Team1 database.
+* Verify that all scripts are tested and error-free.
+* Ensure proper permissions for SQL Server Agent jobs.
+* Schedule regular backups of the Team1 database.
 ### 2. Maintenance Tasks:
-    * Monitor job execution logs for errors.
-    * Periodically review and optimize queries for performance.
-    * Update transformations and views as business requirements evolve.
+* Monitor job execution logs for errors.
+* Periodically review and optimize queries for performance.
+* Update transformations and views as business requirements evolve.
     
 ## 8. Conclusion
 This documentation outlines the architecture, scripts, and processes for the Data Warehouse project. By following this structure, you can ensure a robust, scalable, and maintainable system for analyzing online store data.
