@@ -1,5 +1,3 @@
-Here’s an enhanced version of your `.md` file with added icons, improved formatting, and minor corrections for better readability and aesthetics:
-
 ---
 
 # 📊 PROJECT: Online_store_DW_project_team1  
