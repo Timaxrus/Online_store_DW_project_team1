@@ -146,5 +146,19 @@ WHERE Status IN ('Pending', 'Shipped', 'Delivered');
 ## 2. UpdateInventory :
     - Updates inventory levels based on order and shipment data.
     - Ensures consistency between silver.inventory and silver.orders.
+### 5. Gold Layer
+## Purpose:
+The Gold layer provides analytical views for business intelligence. These views aggregate and summarize data to support specific use cases.
 
+## Views:
+## 1. Dimension Tables :
+-- DimCustomers: Customer-related attributes.
+-- DimProducts: Product-related attributes.
+-- DimCategories: Category-related attributes.
+## 2. Fact Views :
+-- SalesPerformance : Analyzes revenue, order quantities, and trends over time.
+-- CustomerLifetimeValue : Calculates the total value contributed by each customer.
+## 3. InventoryStatus : Tracks stock levels and identifies low-stock items.
+-- ProductReviewSummary : Aggregates product ratings and feedback.
+**Example View:**
 
