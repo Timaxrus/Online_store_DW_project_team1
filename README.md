@@ -68,9 +68,9 @@ CREATE SCHEMA gold;
 GO
 ```
 
-## **Warning** : Running this script will permanently delete all data in the Team1 database. Ensure proper backups before execution.
+### **Warning** : Running this script will permanently delete all data in the Team1 database. Ensure proper backups before execution.
 
-### 3. Bronze Layer
+## 3. Bronze Layer
 
 ### Purpose:
 The Bronze layer serves as the landing zone for raw data. It contains exact copies of the source tables without any transformations.
@@ -103,17 +103,17 @@ CREATE TABLE bronze.orders (
 
 --- 
 
-### 4. Silver Layer
+## 4. Silver Layer
 
-## 1. Purpose:
+### 1. Purpose:
 The Silver layer performs ETL operations to transform and enhance the data from the Bronze layer. 
 This ensures high-quality, standardized data for downstream analysis.
 
-## Scripts:
-## 1. Silver DDL :
+### Scripts:
+### 1. Silver DDL :
     - Defines transformed tables with additional columns (e.g., Created_At).
     - Includes constraints, indexes, and relationships.
-## 2. Silver Procedure :
+### 2. Silver Procedure :
     - Pulls data from the Bronze layer.
     - Applies transformations such as data cleaning, deduplication, and enrichment.
 **Example Transformation Logic:**
@@ -142,25 +142,25 @@ FROM bronze.orders
 WHERE Status IN ('Pending', 'Shipped', 'Delivered');
 ```
 ### Stored Procedures:
-## 1. PlaceOrder :
-    - Inserts new orders into the silver.orders table.
-    - Automatically generates unique OrderID values using an IDENTITY column or sequence.
-## 2. UpdateInventory :
+### 1. PlaceOrder :
+    * Inserts new orders into the silver.orders table.
+    * Automatically generates unique OrderID values using an IDENTITY column or sequence.
+### 2. UpdateInventory :
     - Updates inventory levels based on order and shipment data.
     - Ensures consistency between silver.inventory and silver.orders.
-### 5. Gold Layer
-## Purpose:
+## 5. Gold Layer
+### Purpose:
 The Gold layer provides analytical views for business intelligence. These views aggregate and summarize data to support specific use cases.
 
-## Views:
-## 1. Dimension Tables :
--- DimCustomers: Customer-related attributes.
--- DimProducts: Product-related attributes.
--- DimCategories: Category-related attributes.
-## 2. Fact Views :
--- SalesPerformance : Analyzes revenue, order quantities, and trends over time.
--- CustomerLifetimeValue : Calculates the total value contributed by each customer.
-## 3. InventoryStatus : Tracks stock levels and identifies low-stock items.
--- ProductReviewSummary : Aggregates product ratings and feedback.
+### Views:
+### 1. Dimension Tables :
+* DimCustomers: Customer-related attributes.
+* DimProducts: Product-related attributes.
+* DimCategories: Category-related attributes.
+### 2. Fact Views :
+* SalesPerformance : Analyzes revenue, order quantities, and trends over time.
+*  CustomerLifetimeValue : Calculates the total value contributed by each customer.
+### 3. InventoryStatus : Tracks stock levels and identifies low-stock items.
+* ProductReviewSummary : Aggregates product ratings and feedback.
 **Example View:**
 
