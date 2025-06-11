@@ -78,4 +78,23 @@ DDL Script :
 -  Creates tables for Customers, Products, Categories, Orders, Shipments, Inventories, and Reviews.
 -  Each table mirrors the structure of the corresponding source CSV file.
 
-Example Table Definition:
+**Example Table Definition:**
+
+```sql
+CREATE TABLE bronze.orders (
+    OrderID      INT,
+    ProductID    INT,
+    CustomerID   INT,
+    OrderDate    DATE,
+    OrderQuantity INT,
+    TotalAmount  DECIMAL(10, 2),
+    Status       NVARCHAR(20) NOT NULL CHECK (Status IN ('Cancelled', 'Shipped', 'Delivered', 'Pending'))
+);
+```
+---
+### Bulk Insert Process:
+1. **Script Name :** proc_load_bronze.sql
+2. **Purpose :** Bulk inserts data from CSV files into the corresponding Bronze tables.
+3. **Key Features :**
+- Automates the ingestion of raw data.
+- Ensures data integrity by matching column structures.
