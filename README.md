@@ -75,7 +75,7 @@ The Bronze layer serves as the landing zone for raw data. It contains exact copi
 
 ### Table Definitions:
 DDL Script :
-** Creates tables for Customers, Products, Categories, Orders, Shipments, Inventories, and Reviews.
-** Each table mirrors the structure of the corresponding source CSV file.
+-  Creates tables for Customers, Products, Categories, Orders, Shipments, Inventories, and Reviews.
+-  Each table mirrors the structure of the corresponding source CSV file.
 
 Example Table Definition:
