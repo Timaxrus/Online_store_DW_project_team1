@@ -64,7 +64,18 @@ GO
 
 CREATE SCHEMA gold;
 GO
+```
 
 ## **Warning** : Running this script will permanently delete all data in the Team1 database. Ensure proper backups before execution.
 
-## 3. Bronze Layer
+### 3. Bronze Layer
+
+### Purpose:
+The Bronze layer serves as the landing zone for raw data. It contains exact copies of the source tables without any transformations.
+
+### Table Definitions:
+DDL Script :
+** Creates tables for Customers, Products, Categories, Orders, Shipments, Inventories, and Reviews.
+** Each table mirrors the structure of the corresponding source CSV file.
+
+Example Table Definition:
