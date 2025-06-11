@@ -196,7 +196,7 @@ Automate the entire ETL process to ensure timely and consistent data updates.
 ### Example Job:
 
 ```sql
--- Create a SQL Agent Job for Bronze Layer Data Ingestion
+
 EXEC msdb.dbo.sp_add_job @job_name = 'Bronze_Data_Ingestion';
 EXEC msdb.dbo.sp_add_jobstep @job_name = 'Bronze_Data_Ingestion', 
     @step_name = 'Bulk_Insert', 
