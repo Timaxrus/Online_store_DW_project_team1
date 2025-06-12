@@ -5,6 +5,8 @@ Documentation
 *Online store data warehouse designing project*  
 
 ---
+![Data Flow-Data Flow_Team1 drawio](https://github.com/user-attachments/assets/1ba588b3-45bb-409b-8ad2-a4ccec769e17)
+
 
 # 📂 Data Warehouse Project Documentation
 
